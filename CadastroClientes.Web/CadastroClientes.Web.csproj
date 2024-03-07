@@ -80,9 +80,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientePage.aspx" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CadastroClientes.Domain\CadastroClientes.Domain.csproj">
       <Project>{9E829BB5-3B04-4B57-B14E-2A33300CDA04}</Project>
       <Name>CadastroClientes.Domain</Name>
