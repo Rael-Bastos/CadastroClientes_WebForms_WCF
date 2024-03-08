@@ -55,7 +55,8 @@ namespace CadastroClientes.Web
 
         private void addNewRowButton_Click(object sender, EventArgs e)
         {
-            this.dataGridViewClientes.Rows.Add();
+            CadastroClienteForm cadastroForm = new CadastroClienteForm();
+            cadastroForm.Show();
         }
 
         private void deleteRowButton_Click(object sender, EventArgs e)
