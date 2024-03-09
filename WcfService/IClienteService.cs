@@ -13,43 +13,19 @@ namespace WcfService
     public interface IClienteService
     {
         [OperationContract]
-        string InsertClient(int value);
+        void InsertClient(Cliente cliente);
 
         [OperationContract]
-        string UpdateClient(int value);
+        void DeleteClient(int idCliente);
+        
+        [OperationContract]
+        void UpdateClient(Cliente cliente);
 
         [OperationContract]
-        Cliente GetClient(int value);
+        Cliente GetClient(int idCliente);
 
         [OperationContract]
         List<Cliente>  GetClients();
 
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: Adicione suas operações de serviço aqui
-    }
-
-    // Use um contrato de dados como ilustrado no exemplo abaixo para adicionar tipos compostos a operações de serviço.
-    // Você pode adicionar arquivos XSD ao projeto. Depois de criar o projeto, use os tipos de dados definidos nele diretamente, com o namespace "WcfService.ContractType".
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
     }
 }

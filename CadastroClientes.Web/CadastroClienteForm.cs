@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CadastroClientes.Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,54 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WcfService;
 
 namespace CadastroClientes.Web
 {
     public partial class CadastroClienteForm : Form
     {
+        private IClienteService _clienteService;
         public CadastroClienteForm()
         {
+            _clienteService = new ClienteService();
             InitializeComponent();
             this.Load += new EventHandler(ClienteForm_Load);
         }
 
         private void ClienteForm_Load(object sender, EventArgs e)
         {
-            // Adicione itens fictícios ao ListBox
-            listBoxClientes.Items.AddRange(new object[] {"SSP","Detran","PF","CC"});
-
-            // Personalize a aparência do ListBox
-            EstilizarListBox(listBoxClientes);
-        }
-        private void EstilizarListBox(ListBox listBox)
-        {
-            listBox.BorderStyle = BorderStyle.None;
-            listBox.BackColor = Color.White;
-            listBox.Font = new Font("Arial", 15);
-            listBox.Size = new Size(236,35);
-            listBox.ForeColor = Color.Black;
-            listBox.DrawMode = DrawMode.OwnerDrawFixed;
-            listBox.DrawItem += ListBox_DrawItem;
         }
 
-        private void ListBox_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index >= 0)
-            {
-                e.DrawBackground();
 
-                Brush myBrush = Brushes.Black;
-                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-                {
-                    myBrush = Brushes.White;
-                }
-
-                e.Graphics.DrawString(listBoxClientes.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
-                e.DrawFocusRectangle();
-            }
-        }
-    
-    private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -88,5 +61,59 @@ namespace CadastroClientes.Web
         {
 
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime? dtExp = new DateTime(); dtExp = null;
+                if(string.IsNullOrEmpty(inputDtExpedicao.Text)) { dtExp = Convert.ToDateTime(inputDtExpedicao.Text); };
+                var cliente = new Cliente()
+                {
+                    IdCliente = 0,
+                    CPF = inputCpf.Text,
+                    Nome = inputNome.Text,
+                    RG = inputRg.Text,
+                    DataExpedicao = dtExp,
+                    OrgaoExpedicao = inputOrgExpedicao.Text,
+                    UFExpedicao = inputUfEx.Text,
+                    DataNascimento = Convert.ToDateTime(inputDtNascimento.Text),
+                    Sexo = inputSexo.Text,
+                    EstadoCivil = inputEstadoCivil.Text,
+                    EnderecoCliente = new EnderecoCliente()
+                    {
+                        CEP = inputCep.Text,
+                        Logradouro = inputLogradouro.Text,
+                        Numero = inputNumero.Text,
+                        Complemento = inputComplemento.Text,
+                        Bairro = inputBairro.Text,
+                        Cidade = inputCidade.Text,
+                        UF = inputUf.Text,
+                    }
+                };
+
+                _clienteService.InsertClient(cliente);
+
+                this.Hide();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+            }
+
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }

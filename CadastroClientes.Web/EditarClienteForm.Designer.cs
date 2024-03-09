@@ -1,6 +1,6 @@
 ﻿namespace CadastroClientes.Web
 {
-    partial class CadastroClienteForm
+    partial class EditarClienteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -444,7 +444,7 @@
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.button2_Click);
             // 
-            // CadastroClienteForm
+            // EditarClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -485,9 +485,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inputCpf);
-            this.Name = "CadastroClienteForm";
+            this.Name = "EditarClienteForm";
             this.Text = "CadastroCliente";
-            this.Load += new System.EventHandler(this.CadastroClienteForm_Load);
+            this.Load += new System.EventHandler(this.EditarClienteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

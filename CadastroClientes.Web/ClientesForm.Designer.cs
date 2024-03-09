@@ -5,13 +5,12 @@ using WcfService;
 
 namespace CadastroClientes.Web
 {
-    partial class Clientes
+    partial class ClientesForm
     {
         /// <summary>
         /// Variável de designer necessária.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private IClienteService _clienteService;
         /// <summary>
         /// Limpar os recursos que estão sendo usados.
         /// </summary>
@@ -33,29 +32,9 @@ namespace CadastroClientes.Web
         /// </summary>
         private void InitializeComponent()
         {
-            _clienteService = new ClienteService();
-            this.SuspendLayout();
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1003, 292);
-            this.ForeColor = System.Drawing.Color.Coral;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Clientes";
-            this.Text = "Clientes";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.ResumeLayout(false);
+            RegarregaDados();
+           
 
-            this.Load += new System.EventHandler(this.ClienteForm_Load);
-
-        }
-        private void ClienteForm_Load(object sender, EventArgs e)
-        {
-
-            var clientes = _clienteService.GetClients();
-            dataGridViewClientes.DataSource = clientes;
         }
         #endregion
     }
